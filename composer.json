@@ -1,0 +1,36 @@
+{
+    "name": "mattsadev/tones",
+    "description": "Mattsadev test tones plugin.",
+    "keywords": ["wordpress", "plugin"],
+    "homepage": "https://mattsadev.com",
+    "license": "See license.txt",
+    "authors": [
+        {
+            "name": "Mattsadev",
+            "homepage": "https://mattsadev.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "type": "wordpress-plugin",
+    "config": {
+        "autoloader-suffix": "Tones",
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "automattic/jetpack-autoloader": true
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "tones.php", "src/"
+        ],
+        "exclude-from-classmap": [
+            "src/assets/"
+        ],
+        "psr-4": {
+            "Mattsadev\\Tones\\": "src"
+        }
+    },
+    "require-dev": {
+        "automattic/jetpack-autoloader": "3.0.x-dev"
+    }
+}
