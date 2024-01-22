@@ -369,17 +369,6 @@ class Main {
 
         return $links;
     }
-
-    // /**
-    //  * Init REST API.
-    //  *
-    //  * @since 1.1.0
-    //  */
-    // public function api_init(): void {
-    //     $this->rest_api = new REST_API();
-    //     $this->rest_api->init_hooks();
-    //     $this->rest_api->register_endpoints();
-    // }
 }
 
 // Kick it off.

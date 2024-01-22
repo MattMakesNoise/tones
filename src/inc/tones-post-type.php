@@ -51,6 +51,13 @@ class Tones_Post_Type {
             'single' => true,
             'show_in_rest' => true,
         ));
+
+        // Register tone shortname field
+        register_post_meta('tones', 'tone_shortname', array(
+            'type' => 'string',
+            'single' => true,
+            'show_in_rest' => true,
+        ));
     }
 
     /**
@@ -73,6 +80,15 @@ class Tones_Post_Type {
             'tone-file',
             'Tone File',
             [ self::class, 'tone_file_meta_box' ],
+            'tones',
+            'side',
+            'low'
+        );
+
+        add_meta_box(
+            'tone-short-name',
+            'Tone Shortname',
+            [ self::class, 'tone_short_name_meta_box' ],
             'tones',
             'side',
             'low'
@@ -110,7 +126,22 @@ class Tones_Post_Type {
     }
 
     /**
-     * Saves tone freq and tone file meta boxes.
+     * Outputs tone shortname meta box.
+     *
+     * @return void
+     * @since 0.1.0
+     */
+    public static function tone_short_name_meta_box(): void {
+        global $post;
+        $short_name = get_post_meta($post->ID, 'tone_short_name', true);
+        ?>
+        <label for="tone_short_name">Tone Shortname</label>
+        <input type="text" name="tone_short_name" id="tone_short_name" value="<?php echo $short_name; ?>">
+        <?php
+    }
+
+    /**
+     * Saves tone freq, tone file and tone shortname meta boxes.
      *
      * @since 1.0.0
      *
@@ -132,6 +163,14 @@ class Tones_Post_Type {
                 $post_id,
                 'tone_file',
                 $_POST[ 'tone_file' ]
+            );
+        }
+
+        if ( array_key_exists( 'tone_short_name', $_POST ) ) {
+            update_post_meta(
+                $post_id,
+                'tone_short_name',
+                $_POST[ 'tone_short_name' ]
             );
         }
     }

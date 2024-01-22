@@ -44,11 +44,12 @@ class Tones_Endpoint {
                 $query->the_post();
 
                 $tones[] = array(
-                    'id' => get_the_ID(),
-                    'title' => get_the_title(),
+                    'id'        => get_the_ID(),
+                    'title'     => get_the_title(),
                     'frequency' => get_post_meta( get_the_ID(), 'tone_freq', true ),
-                    'file' => get_post_meta( get_the_ID(), 'tone_file', true ),
-                    'full_url' => Main::instance()->url . 'assets/mp3/' . sanitize_file_name( get_post_meta( get_the_ID(), 'tone_file', true ) ) . '_-6dBFS_5s.mp3',
+                    'file'      => get_post_meta( get_the_ID(), 'tone_file', true ),
+                    'full_url'  => Main::instance()->url . 'assets/mp3/' . sanitize_file_name( get_post_meta( get_the_ID(), 'tone_file', true ) ) . '_-6dBFS_5s.mp3',
+                    'shortname' => get_post_meta( get_the_ID(), 'tone_short_name', true )
                 );
             }
         }
